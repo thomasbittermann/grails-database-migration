@@ -22,18 +22,18 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile('org.liquibase:liquibase-core:2.0.5') {
+		compile('org.liquibase:liquibase-core:3.2.0') {
 			excludes 'junit', 'easymockclassextension', 'ant', 'servlet-api', 'spring'
 		}
 		test 'commons-dbcp:commons-dbcp:1.4'
 	}
 
 	plugins {
-		build(':release:3.0.1', ':rest-client-builder:2.0.1') {
+		build(':release:3.0.1', ':rest-client-builder:2.0.3') {
 			export = false
 		}
 
-		runtime "${System.getProperty('hibernatePluginVersion',':hibernate:3.6.10.12')}", {
+		runtime "${System.getProperty('hibernatePluginVersion',':hibernate:3.6.10.16')}", {
 			export = false
 		}
 	}

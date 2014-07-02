@@ -17,8 +17,8 @@ package grails.plugin.databasemigration
 import java.lang.reflect.Method
 import java.sql.Types
 
-import liquibase.database.structure.Column
-import liquibase.database.structure.Table
+import liquibase.structure.core.Column
+import liquibase.structure.core.Table
 
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>

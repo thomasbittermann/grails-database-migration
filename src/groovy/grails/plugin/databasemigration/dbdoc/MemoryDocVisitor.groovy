@@ -21,9 +21,9 @@ import liquibase.changelog.ChangeSet
 import liquibase.changelog.DatabaseChangeLog
 import liquibase.changelog.visitor.DBDocVisitor
 import liquibase.database.Database
-import liquibase.database.structure.Column
-import liquibase.database.structure.DatabaseObject
-import liquibase.database.structure.Table
+import liquibase.structure.core.Column
+import liquibase.structure.core.DatabaseObject
+import liquibase.structure.core.Table
 import liquibase.resource.ResourceAccessor
 import liquibase.snapshot.DatabaseSnapshot
 import liquibase.snapshot.DatabaseSnapshotGeneratorFactory

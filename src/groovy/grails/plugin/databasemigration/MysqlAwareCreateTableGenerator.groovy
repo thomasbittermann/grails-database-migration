@@ -15,7 +15,7 @@
 package grails.plugin.databasemigration
 
 import liquibase.database.Database
-import liquibase.database.structure.DatabaseObject
+import liquibase.structure.core.DatabaseObject
 import liquibase.exception.ValidationErrors
 import liquibase.exception.Warnings
 import liquibase.sql.Sql

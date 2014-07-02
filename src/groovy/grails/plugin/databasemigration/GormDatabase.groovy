@@ -14,7 +14,7 @@
  */
 package grails.plugin.databasemigration
 
-import liquibase.database.AbstractDatabase
+import liquibase.database.AbstractJdbcDatabase
 import liquibase.database.DatabaseConnection
 
 /**
@@ -22,7 +22,7 @@ import liquibase.database.DatabaseConnection
  *
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
-class GormDatabase extends AbstractDatabase {
+class GormDatabase extends AbstractJdbcDatabase {
 
 	/*org.hibernate.cfg.Configuration*/ def configuration
 	/*org.hibernate.dialect.Dialect*/ def dialect

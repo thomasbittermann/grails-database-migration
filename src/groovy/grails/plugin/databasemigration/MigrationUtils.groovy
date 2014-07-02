@@ -20,8 +20,8 @@ import liquibase.Liquibase
 import liquibase.database.Database
 import liquibase.database.DatabaseFactory
 import liquibase.database.jvm.JdbcConnection
-import liquibase.database.structure.Index
-import liquibase.database.structure.UniqueConstraint
+import liquibase.structure.core.Index
+import liquibase.structure.core.UniqueConstraint
 import liquibase.diff.DiffResult
 
 import org.codehaus.groovy.grails.commons.GrailsApplication

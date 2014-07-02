@@ -15,7 +15,7 @@
 package grails.plugin.databasemigration
 
 import liquibase.database.Database
-import liquibase.database.structure.Column
+import liquibase.structure.core.Column
 import liquibase.database.typeconversion.core.DefaultTypeConverter
 
 /**

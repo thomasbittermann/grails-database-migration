@@ -17,7 +17,7 @@ package grails.plugin.databasemigration
 import java.lang.reflect.Field
 
 import liquibase.database.Database
-import liquibase.database.structure.Column
+import liquibase.structure.core.Column
 import liquibase.diff.Diff
 import liquibase.diff.DiffResult
 import liquibase.exception.DatabaseException

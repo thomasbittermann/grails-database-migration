@@ -17,16 +17,16 @@ package grails.plugin.databasemigration
 import java.lang.reflect.Method
 
 import liquibase.database.Database
-import liquibase.database.structure.Column
-import liquibase.database.structure.ForeignKey
-import liquibase.database.structure.Index
-import liquibase.database.structure.PrimaryKey
-import liquibase.database.structure.Sequence
-import liquibase.database.structure.Table
+import liquibase.structure.core.Column
+import liquibase.structure.core.ForeignKey
+import liquibase.structure.core.Index
+import liquibase.structure.core.PrimaryKey
+import liquibase.structure.core.Sequence
+import liquibase.structure.core.Table
 import liquibase.diff.DiffStatusListener
 import liquibase.exception.DatabaseException
-import liquibase.snapshot.DatabaseSnapshot
-import liquibase.snapshot.DatabaseSnapshotGenerator
+import liquibase.snapshot.JdbcDatabaseSnapshot
+import liquibase.snapshot.SnapshotGenerator
 
 /**
  * Used by the gorm-diff script. Registered in DatabaseMigrationGrailsPlugin.doWithApplicationContext().
@@ -35,17 +35,17 @@ import liquibase.snapshot.DatabaseSnapshotGenerator
  *
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
-class GormDatabaseSnapshotGenerator implements DatabaseSnapshotGenerator {
+class GormDatabaseSnapshotGenerator implements SnapshotGenerator {
 
 	/**
 	 * {@inheritDoc}
 	 * @see liquibase.snapshot.DatabaseSnapshotGenerator#createSnapshot(liquibase.database.Database,
 	 * 	java.lang.String, java.util.Set)
 	 */
-	DatabaseSnapshot createSnapshot(Database db, String requestedSchema, Set<DiffStatusListener> listeners)
+	JdbcDatabaseSnapshot createSnapshot(Database db, String requestedSchema, Set<DiffStatusListener> listeners)
 			throws DatabaseException {
 
-		DatabaseSnapshot snapshot = new DatabaseSnapshot(db, requestedSchema)
+		JdbcDatabaseSnapshot snapshot = new JdbcDatabaseSnapshot(db, requestedSchema)
 
 		try {
 			def cfg = db.configuration
@@ -169,7 +169,7 @@ class GormDatabaseSnapshotGenerator implements DatabaseSnapshotGenerator {
 	/**
 	 * Filters snapshot removing objects not belonging to schema or referencing objects outside schema.
 	 */
-	protected void filterSnapshot(DatabaseSnapshot snapshot, String schema) {
+	protected void filterSnapshot(JdbcDatabaseSnapshot snapshot, String schema) {
 
 		def removeNotInSchema = { Collection things, Closure getSchema ->
 			things.removeAll things.findAll { getSchema(it) != schema }
@@ -199,7 +199,7 @@ class GormDatabaseSnapshotGenerator implements DatabaseSnapshotGenerator {
 
 	// MySQL is unique in that the Dialect adds an index to each FK but it's
 	// not exposed in the object model. so we add it here to be consistent
-	protected void addMysqlFkIndex(DatabaseSnapshot snapshot, Table table, hibernateForeignKey) {
+	protected void addMysqlFkIndex(JdbcDatabaseSnapshot snapshot, Table table, hibernateForeignKey) {
 		Index index = new Index(table: table, name: hibernateForeignKey.name)
 		for (hibernateColumn in hibernateForeignKey.columnIterator) {
 			index.columns << hibernateColumn.name
